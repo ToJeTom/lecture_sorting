@@ -36,12 +36,37 @@ def selection_sort(lst, direction="ascending"):
             lst[i], lst[idx] = lst[idx], lst[i]
         return lst
 
+def bubble_sort(lst):
+    for i in range(len(lst)):
+        for j in range(i, len(lst)):
+            if lst[i]>lst[j]:
+                lst[i], lst[j] = lst[j], lst[i]
+    return lst
+
+
+def insertion_sort(lst):
+    for i in range(1, len(lst)):
+        insert = i
+        tmp = lst[i]
+        for j in range(i - 1, -1, -1):
+           if tmp < lst[j]:
+               lst[j+1]  = lst[j]
+               insert = j
+           else:
+               break
+        lst[insert] = tmp
+    return lst
+
 
 def main():
     a = read_data("numbers.csv")
     print(a)
-    b = selection_sort(a["series_1"])
-    print(b)
+    #ss = selection_sort(a["series_1"])
+    #print(ss)
+    #bs = bubble_sort(a["series_1"])
+    #print(bs)
+    IS = insertion_sort(a["series_1"])
+    print(IS)
 
 
 
