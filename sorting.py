@@ -1,4 +1,4 @@
-import os
+import os, csv
 
 
 def read_data(file_name):
@@ -10,11 +10,34 @@ def read_data(file_name):
     """
     cwd_path = os.getcwd()
     file_path = os.path.join(cwd_path, file_name)
+    data = {"series_1": [], "series_2": [], "series_3": []}
+    with open(file_path, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            for key, value in row.items():
+                data[key].append(int(value))
+    return data
+
+def selection_sort(lst):
+    for i  in range(len(lst)-1):
+        idx = i
+        for j in range(i+1, len(lst)):
+            if lst[j]<lst[idx]:
+                idx = j
+        lst[i], lst[idx] =  lst[idx], lst[i]
+
+    return lst
 
 
 def main():
-    pass
+    a = read_data("numbers.csv")
+    print(a)
+    b = selection_sort(a["series_1"])
+    print(b)
+
+
 
 
 if __name__ == '__main__':
     main()
+
