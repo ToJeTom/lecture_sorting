@@ -18,15 +18,23 @@ def read_data(file_name):
                 data[key].append(int(value))
     return data
 
-def selection_sort(lst):
-    for i  in range(len(lst)-1):
-        idx = i
-        for j in range(i+1, len(lst)):
-            if lst[j]<lst[idx]:
-                idx = j
-        lst[i], lst[idx] =  lst[idx], lst[i]
-
-    return lst
+def selection_sort(lst, direction="ascending"):
+    if direction == "ascending":
+        for i in range(len(lst) - 1):
+            idx = i
+            for j in range(i + 1, len(lst)):
+                if lst[j] < lst[idx]:
+                    idx = j
+            lst[i], lst[idx] = lst[idx], lst[i]
+        return lst
+    else:
+        for i in range(len(lst) - 1):
+            idx = i
+            for j in range(i + 1, len(lst)):
+                if lst[j] > lst[idx]:
+                    idx = j
+            lst[i], lst[idx] = lst[idx], lst[i]
+        return lst
 
 
 def main():
